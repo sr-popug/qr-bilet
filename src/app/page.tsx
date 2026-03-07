@@ -7,6 +7,7 @@ import styles from "./page.module.css";
 interface TransportData {
   type: "Автобус" | "Троллейбус";
   number: string;
+  vehicleId: string;
 }
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
   const [formData, setFormData] = useState<TransportData>({
     type: "Автобус",
     number: "",
+    vehicleId: "",
   });
 
   useEffect(() => {
@@ -56,7 +58,7 @@ export default function Home() {
           <span> ₽</span>
         </div>
         <div className={styles.time}>{formattedTime}</div>
-        <div className={styles.ts}>Т/С: 321</div>
+        <div className={styles.ts}>Т/С: {formData.vehicleId || "321"}</div>
         <div className={styles.moment}>С момента оплаты прошло:</div>
         <div className={styles.seconds}>{formatTime(seconds)}</div>
         <div className={styles.qrCode}>
