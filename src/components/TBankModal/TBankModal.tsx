@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./tbank-modal.module.css";
-// Проверьте, что в названии файла нет опечатки (TimeContenxt -> TimeContext)
+
 import { useTimeStore } from "../../store/TimeContenxt";
 
 const formatModalDate = (timestamp: number) => {
