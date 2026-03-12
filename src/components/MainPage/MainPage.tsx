@@ -1,55 +1,34 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import circe from "../../fonts/fonts";
+import circe from "../../app/fonts/fonts";
 import TransportModal from "../TransportModal/TransportModal";
 import styles from "./page.module.css";
-
-interface TransportData {
-  type: "Автобус" | "Троллейбус";
-  number: string;
-  vehicleId: string;
-}
+// Импортируем наш глобальный хук (путь может отличаться)
+import { useTimeStore } from "../../store/TimeContenxt";
 
 export default function MainPage() {
-  const [seconds, setSeconds] = useState(0);
-  const [paymentTimestamp, setPaymentTimestamp] = useState<number | null>(null);
+  // 1. Достаем formData и setFormData из глобального контекста
+  const {
+    seconds,
+    setSeconds,
+    paymentTimestamp,
+    setPaymentTimestamp,
+    formData,
+    setFormData,
+  } = useTimeStore();
+
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
-  const [formData, setFormData] = useState<TransportData>({
-    type: "Автобус",
-    number: "",
-    vehicleId: "",
-  });
-
-  // 1. Эффект для инициализации и работы таймера (запускается один раз)
   useEffect(() => {
-    const initTimer = setTimeout(() => {
-      setPaymentTimestamp(Date.now());
-    }, 0);
-
-    const interval = setInterval(() => {
-      setSeconds(prev => prev + 1);
-    }, 1000);
-
-    return () => {
-      clearTimeout(initTimer);
-      clearInterval(interval);
-    };
-  }, []);
-
-  // 2. НОВЫЙ ЭФФЕКТ: Следим за закрытием модального окна (isOpen)
-  useEffect(() => {
-    // Если isOpen стал false (модалка закрылась)
     if (!isOpen) {
       const resetTimer = setTimeout(() => {
-        setSeconds(0); // Сбрасываем таймер на 00:00
-        setPaymentTimestamp(Date.now()); // Обновляем дату оплаты на "сейчас"
+        setSeconds(0);
+        setPaymentTimestamp(Date.now());
       }, 0);
-
       return () => clearTimeout(resetTimer);
     }
-  }, [isOpen]); // Эффект срабатывает каждый раз, когда меняется isOpen
+  }, [isOpen, setSeconds, setPaymentTimestamp]);
 
   const handleTimeHack = () => {
     setSeconds(prev => prev + 10);
@@ -106,6 +85,7 @@ export default function MainPage() {
           />
         </div>
       </div>
+      {/* 3. Прокидываем глобальные данные в модалку как пропсы */}
       <TransportModal
         isOpen={isOpen}
         setIsOpen={setIsOpen}

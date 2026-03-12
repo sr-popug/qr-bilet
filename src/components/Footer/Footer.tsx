@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./footer.module.css";
 
 export default function Footer() {
@@ -15,7 +16,7 @@ export default function Footer() {
         <p>Предъявите контролеру QR-код.</p>
         <p>Чтобы сохранить реквизиты билета, нажмите кнопку «Скачать»</p>
       </div>
-      <button>Скачать билет</button>
+      <Link href={"/tbank"}>Скачать билет</Link>
     </div>
   );
 }

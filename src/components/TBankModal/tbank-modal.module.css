@@ -1,0 +1,212 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  .bg {
+    animation: bg ease 0.4s;
+    background-color: black;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .modal {
+    animation: modal 0.4s ease;
+    height: calc(100vh - 15px);
+    position: relative;
+    bottom: -15px;
+    z-index: 3;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+
+    background-color: white;
+    border-radius: 16px 16px 0 0;
+    .header {
+      flex-shrink: 0;
+      position: relative;
+      padding: 20px 0;
+      display: flex;
+
+      .close {
+        color: #126ef7be;
+        font-weight: 100;
+      }
+      .data {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: 500;
+        opacity: 0.95;
+        font-size: 17px;
+      }
+    }
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 40px;
+
+      .image {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 80px;
+          height: 80px;
+          image-rendering: pixelated;
+        }
+      }
+      h3.title {
+        font-weight: 100;
+        font-size: 18px;
+        text-align: center;
+        margin-top: 15px;
+      }
+      .infoTran {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        color: #9299a2;
+        font-size: 14px;
+        img {
+          width: 14px;
+          height: 14px;
+        }
+        .pen {
+          margin-left: 15px;
+        }
+        .bus {
+          margin-right: 5px;
+        }
+      }
+      .price {
+        text-align: center;
+        margin: 25px 0;
+        font-weight: 800;
+        font-size: 30px;
+      }
+      .flex {
+        display: flex;
+        padding: 0 20px;
+        justify-content: space-between;
+        margin-bottom: 15px;
+
+        .item {
+          padding: 20px 16px;
+          background-color: #f0f6ff;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 5px;
+          img {
+            width: 25px;
+            height: 25px;
+          }
+          p {
+            color: #126ef7be;
+            font-size: 13px;
+          }
+        }
+      }
+      .spravka {
+        margin-top: 30px;
+        padding: 0 16px;
+        .topflex {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          p {
+            display: flex;
+            align-items: center;
+            font-weight: 800;
+            font-size: 20px;
+          }
+          a {
+            color: #126ef7be;
+            font-weight: 100;
+            font-size: 17px;
+          }
+        }
+      }
+      .rek {
+        margin-top: 30px;
+
+        padding: 0 16px;
+        h5 {
+          display: flex;
+          align-items: center;
+          font-weight: 800;
+          font-size: 20px;
+          margin-bottom: 15px;
+        }
+        .title {
+          font-size: 14px;
+          font-weight: 100;
+          color: #9299a2;
+          margin-bottom: 3px;
+        }
+        .rekData {
+          font-weight: 100;
+        }
+      }
+    }
+  }
+}
+
+.operation {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0px;
+}
+.operation img {
+  width: 40px;
+  height: 40px;
+}
+.operation > .left {
+  display: flex;
+  gap: 16px;
+}
+.operation h3 {
+  font-weight: 500;
+  font-size: 17px;
+  text-align: start;
+
+  color: #373737;
+}
+.operation .info p {
+  margin-top: 3px;
+  font-weight: 100;
+  font-size: 14px;
+  color: #9299a2;
+}
+.operation .moneys {
+  display: flex;
+  align-items: center;
+}
+.operation .moneys img {
+  width: 20px;
+  height: 20px;
+}
+@keyframes modal {
+  from {
+    transform: translateY(100vw);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes bg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}

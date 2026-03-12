@@ -1,5 +1,7 @@
 "use client";
-import MainPage from "./components/MainPage/MainPage";
+import Footer from "@/components/Footer/Footer";
+import Header from "@/components/Header/Header";
+import MainPage from "../components/MainPage/MainPage";
 interface TransportData {
   type: "Автобус" | "Троллейбус";
   number: string;
@@ -7,5 +9,11 @@ interface TransportData {
 }
 
 export default function Home() {
-  return <MainPage />;
+  return (
+    <>
+      <Header />
+      <MainPage />
+      <Footer />
+    </>
+  );
 }
