@@ -79,6 +79,12 @@ const TransportModal = ({
             Подтвердить
           </button>
         </form>
+        <p
+          className={styles.p}
+        >{`Чтобы перейти в фейк ТБанк нажмите на "53 ₽"`}</p>
+        <p
+          className={styles.p}
+        >{`Чтобы открыть билет нажмите на "Скачать билет"`}</p>
       </div>
     </div>
   );

@@ -5,7 +5,9 @@ import circe from "../../app/fonts/fonts";
 import TransportModal from "../TransportModal/TransportModal";
 import styles from "./page.module.css";
 // Импортируем наш глобальный хук (путь может отличаться)
+import Link from "next/link";
 import { useTimeStore } from "../../store/TimeContenxt";
+import QRCode from "../QRCode/QRCode";
 
 export default function MainPage() {
   // 1. Достаем formData и setFormData из глобального контекста
@@ -66,10 +68,10 @@ export default function MainPage() {
         <b className={`${styles.busNumber} ${circe.className}`}>
           {formData.type}: №{formData.number}
         </b>
-        <div className={styles.price}>
+        <Link href={"/tbank"} className={styles.price}>
           53
           <span> ₽</span>
-        </div>
+        </Link>
         <div className={styles.time}>{formattedTime}</div>
         <div className={styles.ts}>Т/С: {formData.vehicleId || "321"}</div>
         <div className={styles.moment}>С момента оплаты прошло:</div>
@@ -77,15 +79,10 @@ export default function MainPage() {
           {formatTime(seconds)}
         </div>
         <div className={styles.qrCode}>
-          <Image
-            src={"/qr-code.png"}
-            width={500}
-            height={500}
-            alt={"qr-code"}
-          />
+          <QRCode />
         </div>
       </div>
-      {/* 3. Прокидываем глобальные данные в модалку как пропсы */}
+
       <TransportModal
         isOpen={isOpen}
         setIsOpen={setIsOpen}

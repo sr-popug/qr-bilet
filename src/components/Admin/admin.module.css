@@ -1,0 +1,119 @@
+.loginWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 40px;
+  background: #2a2a2a;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.loginForm input {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+}
+
+.loginForm button {
+  padding: 10px;
+  background: #126ef7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.adminContainer {
+  padding: 0px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.header input {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  width: 80%;
+  outline: none;
+}
+
+.btnCreate {
+  padding: 10px 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  color: black;
+  border: 1px solid #727272;
+
+  border-radius: 8px;
+}
+
+.table th,
+.table td {
+  padding: 5px;
+  text-align: left;
+  border-right: 1px solid #727272;
+  border-bottom: 1px solid #727272;
+}
+.buttons {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+}
+.buttons2 {
+  display: flex;
+}
+.btnCopyLink {
+  background-color: #28a745;
+  border: none;
+  padding: 3px 3px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btnUnbind {
+  padding: 8px 12px;
+  background: #ffc107;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.btnDelete {
+  padding: 8px 12px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

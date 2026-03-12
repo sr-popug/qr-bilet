@@ -4,7 +4,7 @@
   min-height: 100vh;
   align-items: center;
 
-  background-color: var(--background);
+  background-color: #f5f1e8;
 }
 .page p {
   font-size: 18px;
@@ -30,6 +30,7 @@
 }
 .price {
   font-size: 48px;
+  display: block;
   line-height: 54px;
   font-weight: 700;
   margin-bottom: 17px;
