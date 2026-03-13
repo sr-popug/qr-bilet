@@ -85,6 +85,9 @@ const TransportModal = ({
         <p
           className={styles.p}
         >{`Чтобы открыть билет нажмите на "Скачать билет"`}</p>
+        <p
+          className={styles.p}
+        >{`Нажмите на время, чтобы увеличить на 10 сек`}</p>
       </div>
     </div>
   );

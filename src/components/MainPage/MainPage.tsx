@@ -79,7 +79,7 @@ export default function MainPage() {
           {formatTime(seconds)}
         </div>
         <div className={styles.qrCode}>
-          <QRCode />
+          <QRCode color={"f5f1e8"} />
         </div>
       </div>
 

@@ -65,7 +65,7 @@ export default function BiletPage() {
         <p>53.0 руб.</p>
       </div>
       <div className={styles.qrcode}>
-        <QRCode />
+        <QRCode color='ffffff' />
       </div>
     </div>
   );

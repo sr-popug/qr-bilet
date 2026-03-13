@@ -1,7 +1,9 @@
 "use client";
 import { useTimeStore } from "@/store/TimeContenxt";
 
-export default function QRCode() {
+export default function QRCode(
+  { color }: { color: string } = { color: "f5f1e8" },
+) {
   const { paymentTimestamp, formData } = useTimeStore();
 
   const paymentDate = new Date(paymentTimestamp!);
@@ -17,7 +19,7 @@ export default function QRCode() {
 
   const qrString = `билет: серия: "QR200067000141", номер: "${year + month + day + 190609462}" дата: ${formattedTime}, маршрут: "${formData.number}", тип: "${formData.type}", номер: "${formData.vehicleId}"`;
 
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${500}x${500}&bgcolor=f5f1e8&data=${encodeURIComponent(qrString)}`;
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${500}x${500}&bgcolor=${color}&data=${encodeURIComponent(qrString)}`;
 
   return (
     <img

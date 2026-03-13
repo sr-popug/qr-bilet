@@ -1,7 +1,7 @@
 "use client";
 import { createClient } from "@supabase/supabase-js";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./admin.module.css";
 
 interface Token {
@@ -29,15 +29,31 @@ export default function AdminPage() {
     console.log(data);
     if (data) setTokens(data);
   };
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      const savedPassword = localStorage.getItem("a-password");
+
+      if (savedPassword === process.env.NEXT_PUBLIC_ADMIN_PASSWORD!) {
+        setIsAuthenticated(true);
+        await fetchTokens();
+      }
+    };
+
+    checkAuthStatus();
+  }, []);
 
   const handleLogin = () => {
     if (
       password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD! ||
-      localStorage.getItem(password) === process.env.NEXT_PUBLIC_ADMIN_PASSWORD!
+      localStorage.getItem("a-password") ===
+        process.env.NEXT_PUBLIC_ADMIN_PASSWORD!
     ) {
       setIsAuthenticated(true);
       fetchTokens();
-      localStorage.setItem("a-password", password);
+      localStorage.setItem(
+        "a-password",
+        process.env.NEXT_PUBLIC_ADMIN_PASSWORD,
+      );
     } else alert("Неверный пароль!");
   };
 
@@ -57,7 +73,7 @@ export default function AdminPage() {
       .insert([{ token: newToken, is_active: true }]);
     fetchTokens();
     navigator.clipboard.writeText(
-      `https://https://qr-bilet.vercel.app/?token=${newToken}`,
+      `https://qr-bilet.vercel.app/?token=${newToken}`,
     );
   };
 
@@ -134,7 +150,7 @@ export default function AdminPage() {
                         className={styles.btnCopyLink}
                         onClick={() =>
                           navigator.clipboard.writeText(
-                            `https://https://qr-bilet.vercel.app/?token=${t.token}`,
+                            `https://qr-bilet.vercel.app/?token=${t.token}`,
                           )
                         }
                       >
