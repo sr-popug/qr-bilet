@@ -1,9 +1,11 @@
+"use client";
 import AuthGuard from "@/components/AuthGuard/AuthGuard";
+import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
-import StartPage from "@/components/StartPage/StartPage";
 import { Suspense } from "react";
+import MainPage from "../../components/MainPage/MainPage";
 
-export default function page() {
+export default function Home() {
   return (
     <Suspense
       fallback={
@@ -13,8 +15,9 @@ export default function page() {
       }
     >
       <AuthGuard>
-        <Header text={"Оплата проезда"} />
-        <StartPage />
+        <Header text={"Уведомление об оплате"} />
+        <MainPage />
+        <Footer />
       </AuthGuard>
     </Suspense>
   );

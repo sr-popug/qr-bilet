@@ -1,27 +1,31 @@
 "use client";
+import circe from "@/app/fonts/fonts";
+import { useTimeStore } from "@/store/TimeContenxt";
 import Image from "next/image";
-import circe from "../../app/fonts/fonts";
-import styles from "./page.module.css";
-// Импортируем наш глобальный хук (путь может отличаться)
 import Link from "next/link";
-import { useTimeStore } from "../../store/TimeContenxt";
-import QRCode from "../QRCode/QRCode";
+import { useEffect, useState } from "react";
+import TransportModal from "../TransportModal/TransportModal";
+import styles from "./page.module.css";
 
-export default function MainPage() {
-  // 1. Достаем formData и setFormData из глобального контекста
+export default function StartPage() {
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   const {
-    seconds,
     setSeconds,
     paymentTimestamp,
     setPaymentTimestamp,
     formData,
+    setFormData,
   } = useTimeStore();
 
-  const handleTimeHack = () => {
-    setSeconds(prev => prev + 10);
-    setPaymentTimestamp(prev => (prev ? prev - 10000 : null));
-  };
-
+  useEffect(() => {
+    if (!isOpen) {
+      const resetTimer = setTimeout(() => {
+        setSeconds(0);
+        setPaymentTimestamp(Date.now());
+      }, 0);
+      return () => clearTimeout(resetTimer);
+    }
+  }, [isOpen, setSeconds, setPaymentTimestamp]);
   if (!paymentTimestamp) {
     return <div className={styles.page}></div>;
   }
@@ -45,11 +49,10 @@ export default function MainPage() {
 
   return (
     <div className={styles.page}>
-      <div className={styles.sbp}>
+      <Link href='/paided' className={styles.sbp}>
         <Image src={"/sbp.svg"} width={176} height={80} alt={"sbp"} />
-      </div>
+      </Link>
       <div className={styles.mainContent}>
-        <p>Ваш проезд успешно оплачен!</p>
         <b className={`${styles.busNumber} ${circe.className}`}>
           {formData.type}: №{formData.number}
         </b>
@@ -59,14 +62,17 @@ export default function MainPage() {
         </Link>
         <div className={styles.time}>{formattedTime}</div>
         <div className={styles.ts}>Т/С: {formData.vehicleId || "321"}</div>
-        <div className={styles.moment}>С момента оплаты прошло:</div>
-        <div onClick={handleTimeHack} className={styles.seconds}>
-          {formatTime(seconds)}
-        </div>
-        <div className={styles.qrCode}>
-          <QRCode color={"f5f1e8"} />
-        </div>
       </div>
+      <Link className={styles.btn} href={"/get-paid"}>
+        Оплатить
+      </Link>
+
+      <TransportModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        formData={formData}
+        setFormData={setFormData}
+      />
     </div>
   );
 }

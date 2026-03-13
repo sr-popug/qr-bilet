@@ -40,5 +40,19 @@ const tbank = localFont({
     },
   ],
 });
+export const leto = localFont({
+  src: [
+    {
+      path: "./Leto-Thin.ttf",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "./Leto-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+});
 export default circe;
 export { tbank };

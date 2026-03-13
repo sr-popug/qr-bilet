@@ -76,10 +76,10 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
           justifyContent: "center",
           alignItems: "center",
           height: "100vh",
-          background: "#000",
+          background: "#ffffff",
         }}
       >
-        <div style={{ color: "white" }}>Проверка доступа...</div>
+        <div style={{ color: "black" }}>Проверка доступа...</div>
       </div>
     );
   }
@@ -101,9 +101,9 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
       >
         <h2>Доступ закрыт 🔒</h2>
         <p style={{ color: "#999", marginTop: "10px", textAlign: "center" }}>
-          Для использования сервиса необходимо приобрести доступ.
+          Для использования сервиса необходимо иметь доступ.
         </p>
-        <a
+        {/* <a
           href='https://t.me/@sitego_42'
           style={{
             marginTop: "20px",
@@ -116,7 +116,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
           }}
         >
           Купить доступ
-        </a>
+        </a> */}
       </div>
     );
   }

@@ -1,0 +1,80 @@
+.paid {
+  background-color: #13192a;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  .bg {
+    img {
+      width: 130vw;
+      left: -30vw;
+      height: 90%;
+      position: relative;
+    }
+  }
+  .topInfo {
+    position: absolute;
+    padding: 12px 20px;
+    top: 0;
+    color: white;
+    .price {
+      font-size: 32px;
+      span {
+        font-size: 25px;
+      }
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+  .main {
+    position: relative;
+    margin-top: -30px;
+    background-color: #13192a;
+    border-radius: 1.5rem 1.5rem 0 0;
+    z-index: 2;
+    padding: 20px;
+    h1 {
+      font-size: 20px;
+      margin-bottom: 0.5rem;
+    }
+    .el {
+      border-radius: 16px;
+      background-color: #1d263f;
+      box-shadow: 0px 1px 2px 0px #f5f1e82e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 12px;
+      margin-bottom: 22px;
+      font-size: 14px;
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .about {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #fff;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+}
+.throttled {
+  background-color: #f5f1e8;
+  .sbp {
+    margin: 16px 0;
+    display: flex;
+    justify-content: center;
+  }
+  p {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-align: center;
+    margin-top: 40px;
+  }
+}

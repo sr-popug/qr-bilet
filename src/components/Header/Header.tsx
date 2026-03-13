@@ -1,9 +1,9 @@
 import styles from "./header.module.css";
 
-export default function Header() {
+export default function Header({ text }: { text: string }) {
   return (
     <div className={styles.header}>
-      <h1>Уведомление об оплате</h1>
+      <h1>{text}</h1>
     </div>
   );
 }

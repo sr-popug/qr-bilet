@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent } from "react";
+import React, { ChangeEvent, MouseEventHandler } from "react";
 import styles from "./menu.module.css";
 
 interface TransportData {
@@ -25,18 +25,16 @@ const TransportModal = ({
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const handleSubmit: MouseEventHandler<HTMLButtonElement> = e => {
     setIsOpen(false);
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modalContent}>
-        <form onSubmit={handleSubmit} className={styles.form}>
+    <div onClick={e => setIsOpen(false)} className={styles.overlay}>
+      <div onClick={e => e.stopPropagation()} className={styles.modalContent}>
+        <div className={styles.form}>
           <div className={styles.inputRow}>
             <div className={styles.inputGroup}>
               <label>Тип:</label>
@@ -58,7 +56,7 @@ const TransportModal = ({
                 name='number'
                 value={formData.number}
                 onChange={handleChange}
-                className={`${styles.input} ${styles.inputNumber}}`}
+                className={`${styles.input} ${styles.inputNumber}`}
               />
             </div>
           </div>
@@ -75,10 +73,14 @@ const TransportModal = ({
             />
           </div>
 
-          <button type='submit' className={styles.button}>
+          <button
+            type='button'
+            onClick={handleSubmit}
+            className={styles.button}
+          >
             Подтвердить
           </button>
-        </form>
+        </div>
         <p
           className={styles.p}
         >{`Чтобы перейти в фейк ТБанк нажмите на "53 ₽"`}</p>
