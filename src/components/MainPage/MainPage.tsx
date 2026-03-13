@@ -83,12 +83,14 @@ export default function MainPage() {
         </div>
       </div>
 
-      <TransportModal
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        formData={formData}
-        setFormData={setFormData}
-      />
+      {!formData.type && (
+        <TransportModal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
     </div>
   );
 }

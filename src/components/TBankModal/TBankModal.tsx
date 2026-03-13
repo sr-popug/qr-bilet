@@ -137,7 +137,7 @@ export default function TBankModal({
               <div className={styles.left}>
                 <Image src={"/rubl.png"} width={200} height={200} alt={"sbp"} />
                 <div className={styles.info}>
-                  <h3>Tikoff Black</h3>
+                  <h3>Tinkoff Black</h3>
                   <p>105 106,56 ₽</p>
                 </div>
               </div>

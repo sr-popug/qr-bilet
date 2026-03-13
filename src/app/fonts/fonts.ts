@@ -19,11 +19,6 @@ const circe = localFont({
 const tbank = localFont({
   src: [
     {
-      path: "./t-thin.otf",
-      weight: "100",
-      style: "normal",
-    },
-    {
       path: "./t-regular.otf",
       weight: "400",
       style: "normal",
