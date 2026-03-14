@@ -7,7 +7,6 @@ import {
   useState,
 } from "react";
 
-// 1. Переносим интерфейс сюда, чтобы он был доступен везде
 export interface TransportData {
   type: "Автобус" | "Троллейбус";
   number: string;
@@ -19,7 +18,6 @@ interface TimeContextType {
   setPaymentTimestamp: React.Dispatch<React.SetStateAction<number | null>>;
   seconds: number;
   setSeconds: React.Dispatch<React.SetStateAction<number>>;
-  // 2. Добавляем данные о транспорте в тип контекста
   formData: TransportData;
   setFormData: React.Dispatch<React.SetStateAction<TransportData>>;
 }
@@ -30,31 +28,28 @@ export function TimeProvider({ children }: { children: ReactNode }) {
   const [paymentTimestamp, setPaymentTimestamp] = useState<number | null>(null);
   const [seconds, setSeconds] = useState(0);
 
-  // 3. Создаем глобальный стейт для формы
   const [formData, setFormData] = useState<TransportData>({
     type: "Автобус",
     number: "",
-    vehicleId: "",
+    vehicleId: "321",
   });
 
   useEffect(() => {
-    const initTimer = setTimeout(() => {
-      setPaymentTimestamp(prev => prev ?? Date.now());
-    }, 0);
+    if (!paymentTimestamp) {
+      return;
+    }
 
     const interval = setInterval(() => {
-      setSeconds(prev => prev + 1);
+      const now = Date.now();
+      const diffInSeconds = Math.floor((now - paymentTimestamp) / 1000);
+      setSeconds(diffInSeconds);
     }, 1000);
 
-    return () => {
-      clearTimeout(initTimer);
-      clearInterval(interval);
-    };
-  }, []);
+    return () => clearInterval(interval);
+  }, [paymentTimestamp]);
 
   return (
     <TimeContext.Provider
-      // 4. Прокидываем formData и setFormData
       value={{
         paymentTimestamp,
         setPaymentTimestamp,

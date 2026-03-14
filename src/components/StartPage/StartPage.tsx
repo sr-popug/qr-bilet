@@ -26,11 +26,9 @@ export default function StartPage() {
       return () => clearTimeout(resetTimer);
     }
   }, [isOpen, setSeconds, setPaymentTimestamp]);
-  if (!paymentTimestamp) {
-    return <div className={styles.page}></div>;
-  }
 
-  const paymentDate = new Date(paymentTimestamp);
+  const safeTimestamp = paymentTimestamp!;
+  const paymentDate = new Date(safeTimestamp);
 
   const pad = (num: number) => num.toString().padStart(2, "0");
   const day = pad(paymentDate.getDate());
@@ -41,17 +39,12 @@ export default function StartPage() {
 
   const formattedTime = `${day}.${month}.${year} ${hours}:${minutes}`;
 
-  const formatTime = (totalSeconds: number) => {
-    const mins = Math.floor(totalSeconds / 60);
-    const secs = totalSeconds % 60;
-    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-  };
-
   return (
     <div className={styles.page}>
       <Link href='/paided' className={styles.sbp}>
         <Image src={"/sbp.svg"} width={176} height={80} alt={"sbp"} />
       </Link>
+
       <div className={styles.mainContent}>
         <b className={`${styles.busNumber} ${circe.className}`}>
           {formData.type}: №{formData.number}
@@ -63,6 +56,7 @@ export default function StartPage() {
         <div className={styles.time}>{formattedTime}</div>
         <div className={styles.ts}>Т/С: {formData.vehicleId || "321"}</div>
       </div>
+
       <Link className={styles.btn} href={"/get-paid"}>
         Оплатить
       </Link>
