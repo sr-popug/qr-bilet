@@ -12,12 +12,6 @@ import SBPLoader from "../SBPLoader/SBPLoader";
 export default function MainPage() {
   const [throttled, setThrottled] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setThrottled(true);
-    }, 1200);
-  }, []);
-
   const {
     seconds,
     setSeconds,
@@ -25,6 +19,13 @@ export default function MainPage() {
     setPaymentTimestamp,
     formData,
   } = useTimeStore();
+
+  useEffect(() => {
+    setSeconds(0);
+    setTimeout(() => {
+      setThrottled(true);
+    }, 1200);
+  }, []);
 
   const handleTimeHack = () => {
     setSeconds(prev => prev + 10);
