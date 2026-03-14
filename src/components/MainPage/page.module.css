@@ -1,6 +1,6 @@
 .throttled {
+  min-height: 100vh;
   background-color: #f5f1e8;
-  margin-bottom: 800px;
   .sbp {
     margin: 16px 0;
     display: flex;

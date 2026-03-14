@@ -63,6 +63,7 @@
   }
 }
 .throttled {
+  min-height: 100vh;
   background-color: #f5f1e8;
   .sbp {
     margin: 16px 0;
