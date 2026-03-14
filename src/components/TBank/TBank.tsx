@@ -10,7 +10,7 @@ export default function TBank() {
   return (
     <div className={`${styles.page} ${tbank.className}`}>
       <header>
-        <Link href={"/"}>
+        <Link href={"/paided"}>
           <Image
             src={"/left-arrow.png"}
             width={76}

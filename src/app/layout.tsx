@@ -1,8 +1,8 @@
 import { TimeProvider } from "@/store/TimeContenxt";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import circe from "./fonts/fonts";
 import "./globals.css";
-
 export const metadata: Metadata = {
   title: "Уведомление об оплате",
 };
@@ -15,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang='ru'>
       <body className={`${circe.className}`}>
+        <Analytics />
         <TimeProvider>{children}</TimeProvider>
       </body>
     </html>

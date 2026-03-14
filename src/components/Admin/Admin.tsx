@@ -125,7 +125,7 @@ export default function AdminPage() {
           <thead>
             <tr>
               <th>Токен</th>
-              <th>ID Устройства</th>
+              <th>Used</th>
 
               <th>Действия</th>
             </tr>
@@ -134,7 +134,7 @@ export default function AdminPage() {
             {tokens.map(t => (
               <tr key={t.id}>
                 <td>{t.token}</td>
-                <td>{t.device_id || "Не привязан"}</td>
+                <td>{(t.device_id && "Да") || "Нет"}</td>
 
                 <td>
                   <div className={styles.buttons}>
