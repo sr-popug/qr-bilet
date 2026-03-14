@@ -22,11 +22,15 @@ const TransportModal = ({
     e: ChangeEvent<HTMLSelectElement | HTMLInputElement>,
   ) => {
     const { name, value } = e.target;
+
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit: MouseEventHandler<HTMLButtonElement> = e => {
     setIsOpen(false);
+    if (!formData.vehicleId) {
+      setFormData(prev => ({ ...prev, vehicleId: "321" }));
+    }
   };
 
   if (!isOpen) return null;
