@@ -1,0 +1,46 @@
+.loaderContainer {
+  width: 100%;
+  height: 4px; /* Толщина полосы загрузки */
+  background-color: #f0f0f0; /* Легкий серый фон под полосой */
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+}
+
+.loaderFill {
+  height: 100%;
+  width: 0%;
+  /* Жесткий градиент из 6 цветов без плавного перехода */
+  background: linear-gradient(
+    to right,
+    #009add 0%,
+    #009add 16.6%,
+    #8cc63f 16.6%,
+    #8cc63f 33.3%,
+    #007c47 33.3%,
+    #007c47 50%,
+    #fcb711 50%,
+    #fcb711 66.6%,
+    #f37021 66.6%,
+    #f37021 83.3%,
+    #ce0037 83.3%,
+    #ce0037 100%
+  );
+  /* Анимация: бежит 2 секунды, плавно ускоряясь и замедляясь, бесконечно */
+  animation: runLine 2s ease-in-out infinite;
+  transform-origin: left;
+}
+
+@keyframes runLine {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+    /* Сдвигаем вправо, чтобы она красиво "уезжала", а не просто обрывалась */
+    transform: translateX(100%);
+  }
+}

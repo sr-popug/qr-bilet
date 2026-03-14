@@ -4,11 +4,20 @@ import circe from "../../app/fonts/fonts";
 import styles from "./page.module.css";
 // Импортируем наш глобальный хук (путь может отличаться)
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useTimeStore } from "../../store/TimeContenxt";
 import QRCode from "../QRCode/QRCode";
+import SBPLoader from "../SBPLoader/SBPLoader";
 
 export default function MainPage() {
-  // 1. Достаем formData и setFormData из глобального контекста
+  const [throttled, setThrottled] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setThrottled(true);
+    }, 1200);
+  }, []);
+
   const {
     seconds,
     setSeconds,
@@ -42,31 +51,42 @@ export default function MainPage() {
     const secs = totalSeconds % 60;
     return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
-
-  return (
-    <div className={styles.page}>
-      <div className={styles.sbp}>
-        <Image src={"/sbp.svg"} width={176} height={80} alt={"sbp"} />
-      </div>
-      <div className={styles.mainContent}>
-        <p>Ваш проезд успешно оплачен!</p>
-        <b className={`${styles.busNumber} ${circe.className}`}>
-          {formData.type}: №{formData.number}
-        </b>
-        <Link href={"/tbank"} className={styles.price}>
-          53
-          <span> ₽</span>
+  if (!throttled) {
+    return (
+      <div className={styles.throttled}>
+        <Link href='/paided' className={styles.sbp}>
+          <Image src={"/sbp.svg"} width={176} height={80} alt={"sbp"} />
         </Link>
-        <div className={styles.time}>{formattedTime}</div>
-        <div className={styles.ts}>Т/С: {formData.vehicleId || "321"}</div>
-        <div className={styles.moment}>С момента оплаты прошло:</div>
-        <div onClick={handleTimeHack} className={styles.seconds}>
-          {formatTime(seconds)}
+        <SBPLoader />
+        <p>Ожидаем оплаты</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className={styles.page}>
+        <div className={styles.sbp}>
+          <Image src={"/sbp.svg"} width={176} height={80} alt={"sbp"} />
         </div>
-        <div className={styles.qrCode}>
-          <QRCode color={"f5f1e8"} />
+        <div className={styles.mainContent}>
+          <p>Ваш проезд успешно оплачен!</p>
+          <b className={`${styles.busNumber} ${circe.className}`}>
+            {formData.type}: №{formData.number}
+          </b>
+          <Link href={"/tbank"} className={styles.price}>
+            53
+            <span> ₽</span>
+          </Link>
+          <div className={styles.time}>{formattedTime}</div>
+          <div className={styles.ts}>Т/С: {formData.vehicleId || "321"}</div>
+          <div className={styles.moment}>С момента оплаты прошло:</div>
+          <div onClick={handleTimeHack} className={styles.seconds}>
+            {formatTime(seconds)}
+          </div>
+          <div className={styles.qrCode}>
+            <QRCode color={"f5f1e8"} />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }

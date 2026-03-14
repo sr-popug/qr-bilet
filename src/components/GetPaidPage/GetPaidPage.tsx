@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Header from "../Header/Header";
+import SBPLoader from "../SBPLoader/SBPLoader";
 import SBPMenu from "./SBPMenu";
 import styles from "./styles/paid.module.css";
 export default function GetPaidPage() {
@@ -13,7 +14,7 @@ export default function GetPaidPage() {
   useEffect(() => {
     setTimeout(() => {
       setThrottled(true);
-    }, 600);
+    }, 800);
   }, []);
 
   function startPay() {
@@ -73,6 +74,7 @@ export default function GetPaidPage() {
         <Link href='/paided' className={styles.sbp}>
           <Image src={"/sbp.svg"} width={176} height={80} alt={"sbp"} />
         </Link>
+        <SBPLoader />
         <p>Ожидаем оплаты</p>
       </div>
     );

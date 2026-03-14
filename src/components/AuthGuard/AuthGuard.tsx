@@ -1,7 +1,7 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-// Сюда добавим импорт для проверки базы данных чуть позже
+import SBPLoader from "../SBPLoader/SBPLoader";
 
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -76,10 +76,11 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
           justifyContent: "center",
           alignItems: "center",
           height: "100vh",
+          width: "100%",
           background: "#ffffff",
         }}
       >
-        <div style={{ color: "black" }}>Проверка доступа...</div>
+        <SBPLoader />
       </div>
     );
   }

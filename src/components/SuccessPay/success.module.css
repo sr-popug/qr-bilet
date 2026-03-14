@@ -1,0 +1,137 @@
+.page {
+  height: 100vh;
+  animation: page 0.7s ease forwards;
+  opacity: 0;
+  padding: 10px 16px 16px 16px;
+  color: #000000cc;
+  font-size: 18px;
+  .top {
+    color: #126df7;
+    font-size: 18px;
+    font-weight: 100;
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .successImg {
+      margin-top: 30px;
+    }
+    .text1 {
+      margin-top: 15px;
+      font-weight: 100;
+    }
+    .text2 {
+      margin-top: 5px;
+      font-weight: 100;
+      font-size: 15px;
+    }
+    .sbp {
+      margin: 12px 0;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    strong {
+      margin-top: 12px;
+      font-size: 36px;
+    }
+
+    .kvit {
+      margin-top: 20px;
+      flex: 1;
+      border-radius: 10px;
+      padding: 10px 10px;
+      background-color: #f0f6ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      img {
+        image-rendering: pixelated;
+      }
+      p {
+        color: #126ef7be;
+        font-size: 12px;
+      }
+    }
+    h2 {
+      padding-left: 20px;
+      margin-top: 20px;
+      width: 100%;
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .operation {
+      display: flex;
+      margin-left: 35px;
+
+      width: 100%;
+      justify-content: space-between;
+      padding: 15px 0px;
+    }
+    .operation img {
+      width: 40px;
+      height: 40px;
+    }
+    .operation > .left {
+      display: flex;
+      gap: 16px;
+    }
+    .operation h3 {
+      font-weight: 100;
+      font-size: 17px;
+
+      color: #373737;
+    }
+    .operation .info p {
+      margin-top: 2px;
+      display: flex;
+      gap: 5px;
+      font-weight: 100;
+      font-size: 12px;
+      color: #9299a2;
+      span {
+        text-decoration: line-through;
+      }
+      img {
+        width: 12px;
+        height: 10px;
+      }
+    }
+    .cont {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: white;
+      a.go {
+        display: block;
+        width: calc(100% - 32px);
+        padding: 16px;
+        text-align: center;
+        color: #333333;
+        background: #ffdd2d;
+        margin: 16px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        border: none;
+        font-size: 18px;
+        border-radius: 16px;
+        font-weight: 100;
+      }
+    }
+  }
+}
+@keyframes page {
+  from {
+    opacity: 0;
+    transform: translateY(300px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
