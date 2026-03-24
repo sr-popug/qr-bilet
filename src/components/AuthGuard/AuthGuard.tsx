@@ -1,7 +1,7 @@
-"use client";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import SBPLoader from "../SBPLoader/SBPLoader";
+'use client';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import SBPLoader from '../SBPLoader/SBPLoader';
 
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -12,10 +12,10 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const checkAccess = async () => {
       // 1. Ищем токен в ссылке (если человек только что перешел из бота)
-      const tokenFromUrl = searchParams.get("token");
+      const tokenFromUrl = searchParams.get('token');
 
       // 2. Ищем токен в памяти браузера (если он уже заходил ранее)
-      const tokenFromStorage = localStorage.getItem("app_access_token");
+      const tokenFromStorage = localStorage.getItem('app_access_token');
 
       const currentToken = tokenFromUrl || tokenFromStorage;
 
@@ -26,19 +26,19 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
 
       let isValidToken = false;
 
-      let deviceId = localStorage.getItem("local_device_id");
+      let deviceId = localStorage.getItem('local_device_id');
 
       if (!deviceId) {
         deviceId =
           Math.random().toString(36).substring(2) + Date.now().toString(36);
 
-        localStorage.setItem("local_device_id", deviceId);
+        localStorage.setItem('local_device_id', deviceId);
       }
       try {
-        const response = await fetch("/api/check-token", {
-          method: "POST",
+        const response = await fetch('/api/check-token', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ token: currentToken, deviceId: deviceId }),
         });
@@ -46,19 +46,19 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
         const data = await response.json();
         isValidToken = data.isValid;
       } catch (error) {
-        console.error("Ошибка при проверке токена", error);
+        console.error('Ошибка при проверке токена', error);
         isValidToken = false; // Если сервер упал, доступ не даем
       }
 
       if (isValidToken) {
-        localStorage.setItem("app_access_token", currentToken);
+        localStorage.setItem('app_access_token', currentToken);
         setIsAuthorized(true);
 
         if (tokenFromUrl) {
-          router.replace("/");
+          router.replace('/');
         }
       } else {
-        localStorage.removeItem("app_access_token");
+        localStorage.removeItem('app_access_token');
       }
 
       setIsLoading(false);
@@ -72,12 +72,12 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
     return (
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          width: "100%",
-          background: "#ffffff",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          width: '100%',
+          background: '#ffffff',
         }}
       >
         <SBPLoader />
@@ -90,18 +90,18 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
     return (
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          background: "#1c1c1c",
-          color: "white",
-          fontFamily: "sans-serif",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          background: '#1c1c1c',
+          color: 'white',
+          fontFamily: 'sans-serif',
         }}
       >
         <h2>Доступ закрыт 🔒</h2>
-        <p style={{ color: "#999", marginTop: "10px", textAlign: "center" }}>
+        <p style={{ color: '#999', marginTop: '10px', textAlign: 'center' }}>
           Для использования сервиса необходимо иметь доступ.
         </p>
         {/* <a

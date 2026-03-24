@@ -1,14 +1,14 @@
-"use client";
+'use client';
 import {
   createContext,
   ReactNode,
   useContext,
   useEffect,
   useState,
-} from "react";
+} from 'react';
 
 export interface TransportData {
-  type: "Автобус" | "Троллейбус";
+  type: 'Автобус' | 'Троллейбус';
   number: string;
   vehicleId: string;
 }
@@ -29,10 +29,16 @@ export function TimeProvider({ children }: { children: ReactNode }) {
   const [seconds, setSeconds] = useState(0);
 
   const [formData, setFormData] = useState<TransportData>({
-    type: "Автобус",
-    number: "",
-    vehicleId: "321",
+    type: 'Автобус',
+    number: '',
+    vehicleId: '',
   });
+  useEffect(() => {
+    const storedFormData = sessionStorage.getItem('formData');
+    if (storedFormData) {
+      setFormData(JSON.parse(storedFormData));
+    }
+  }, []);
 
   useEffect(() => {
     if (!paymentTimestamp) {
@@ -67,7 +73,7 @@ export function TimeProvider({ children }: { children: ReactNode }) {
 export function useTimeStore() {
   const context = useContext(TimeContext);
   if (!context) {
-    throw new Error("useTimeStore должен использоваться внутри TimeProvider");
+    throw new Error('useTimeStore должен использоваться внутри TimeProvider');
   }
   return context;
 }

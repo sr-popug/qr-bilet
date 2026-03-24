@@ -1,14 +1,14 @@
-"use client";
-import { useTimeStore } from "@/store/TimeContenxt";
+'use client';
+import { useTimeStore } from '@/store/TimeContenxt';
 
 export default function QRCode(
-  { color }: { color: string } = { color: "f5f1e8" },
+  { color }: { color: string } = { color: 'f5f1e8' },
 ) {
   const { paymentTimestamp, formData } = useTimeStore();
 
   const paymentDate = new Date(paymentTimestamp!);
 
-  const pad = (num: number) => num.toString().padStart(2, "0");
+  const pad = (num: number) => num.toString().padStart(2, '0');
   const day = pad(paymentDate.getDate());
   const month = pad(paymentDate.getMonth() + 1);
   const year = paymentDate.getFullYear();
@@ -28,10 +28,10 @@ export default function QRCode(
       height={500}
       alt='QR Code'
       style={{
-        display: "block",
-        maxWidth: "100%",
-        height: "auto",
-        imageRendering: "pixelated",
+        display: 'block',
+        maxWidth: '100%',
+        height: 'auto',
+        imageRendering: 'pixelated',
       }}
     />
   );

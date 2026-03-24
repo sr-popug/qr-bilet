@@ -1,6 +1,7 @@
 .page {
   padding: 8px 16px;
   animation: page 0.7s ease forwards;
+  min-height: 100vh;
   .top {
     display: flex;
     align-items: center;

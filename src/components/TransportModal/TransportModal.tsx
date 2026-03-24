@@ -1,8 +1,10 @@
-import React, { ChangeEvent, MouseEventHandler } from "react";
-import styles from "./menu.module.css";
+'use client';
+import { useTimeStore } from '@/store/TimeContenxt';
+import React, { ChangeEvent, MouseEventHandler } from 'react';
+import styles from './menu.module.css';
 
 interface TransportData {
-  type: "Автобус" | "Троллейбус";
+  type: 'Автобус' | 'Троллейбус';
   number: string;
   vehicleId: string;
 }
@@ -10,26 +12,26 @@ interface TransportData {
 const TransportModal = ({
   isOpen,
   setIsOpen,
-  formData,
-  setFormData,
 }: {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  formData: TransportData;
-  setFormData: React.Dispatch<React.SetStateAction<TransportData>>;
 }) => {
+  const { formData, setFormData, setPaymentTimestamp } = useTimeStore();
+
   const handleChange = (
     e: ChangeEvent<HTMLSelectElement | HTMLInputElement>,
   ) => {
     const { name, value } = e.target;
 
     setFormData(prev => ({ ...prev, [name]: value }));
+    sessionStorage.setItem('formData', JSON.stringify(formData));
   };
 
   const handleSubmit: MouseEventHandler<HTMLButtonElement> = e => {
     setIsOpen(false);
+    setPaymentTimestamp(Date.now());
     if (!formData.vehicleId) {
-      setFormData(prev => ({ ...prev, vehicleId: "321" }));
+      setFormData(prev => ({ ...prev, vehicleId: '321' }));
     }
   };
 
